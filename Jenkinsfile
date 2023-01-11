@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage ('Build Maven Project'){
             steps{
-                sh 'echo "Hola"'
+                sh 'mvn --version'
             }
         }
     }

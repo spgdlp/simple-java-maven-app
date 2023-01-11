@@ -68,5 +68,6 @@
         </executions>
       </plugin>
     </plugins>
+    <finalName>java-app1</finalName>
   </build>
 </project>

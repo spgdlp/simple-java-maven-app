@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage ('Build Maven Project'){
             steps{
-                sh 'mvn --version'
+                bat 'mvn --version'
             }
         }
     }

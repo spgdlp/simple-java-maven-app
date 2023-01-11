@@ -3,6 +3,9 @@ pipeline {
     tools {
         maven '3.8.7'
     }
+    environment{
+        DOCKERHUB_CREDENTIALS = credentials('spgdlp-dockerhub')
+    }
     stages {
         stage ('Build Maven Project'){
             steps{
@@ -17,6 +20,25 @@ pipeline {
                 }
 
             }
+        }
+        stage ('Login Docker Registry'){
+            steps{
+                script{
+                    bat 'docker login -username=spgdlp -p=$DOCKERHUB_CREDENTIALS'
+                }
+            }
+        }
+        stage ('Push Docker Image'){
+            steps{
+                script{
+                    bat 'docker push spgdlp/java-app1:latest'
+                }
+            }
+        }
+    }
+    post{
+        always {
+            bat 'docker logout'
         }
     }
 }

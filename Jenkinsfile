@@ -6,7 +6,8 @@ pipeline {
     stages {
         stage ('Build Maven Project'){
             steps{
-                bat 'mvn --version'
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/spgdlp/simple-java-maven-app']]])
+                bat 'mvn clean install'
             }
         }
     }

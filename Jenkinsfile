@@ -35,6 +35,13 @@ pipeline {
                 }
             }
         }
+        stage ('Deploy to K8S'){
+            steps{
+                script{
+                    bat 'kubectl config set-context --current --namespace=jenkins'
+                }
+            }
+        }
     }
     post{
         always {

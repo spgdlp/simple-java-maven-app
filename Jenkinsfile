@@ -24,7 +24,7 @@ pipeline {
         stage ('Login Docker Registry'){
             steps{
                 script{
-                    bat 'docker login -username=spgdlp -p=%DOCKERHUB_CREDENTIALS_PSW%'
+                    bat 'docker login --username=%DOCKERHUB_CREDENTIALS_USR% --password=%DOCKERHUB_CREDENTIALS_PSW%'
                 }
             }
         }

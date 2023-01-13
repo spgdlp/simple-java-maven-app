@@ -36,11 +36,51 @@ pipeline {
             }
         }
         stage ('Deploy to K8S'){
-            steps{
-                script{
-                    bat 'kubectl config set-context --current --namespace=jenkins'
+            agent {
+                kubernetes {
+                    yaml '''
+                        apiVersion: apps/v1
+                        kind: Deployment
+                        metadata:
+                        name: java-app1
+                        labels:
+                            app: java-app1
+                        spec:
+                        selector:
+                            matchLabels:
+                            app: java-app1
+                        replicas: 2
+                        template:
+                            metadata:
+                            labels:
+                                app: java-app1
+                            spec:
+                            containers:
+                                - name: java-app1
+                                image: spgdlp/java-app1
+                                imagePullPolicy: IfNotPresent
+                                ports:
+                                    - containerPort: 8080
+
+                        ---
+                        apiVersion: v1
+                        kind: Service
+                        metadata:
+                        name: java-app1-svc
+                        spec:
+                        selector:
+                            app: java-app1
+                        ports:
+                            - protocol: TCP
+                            #Puerto del servicio
+                            port: 8080
+                            #Puerto del POD
+                            targetPort: 8080
+                        type: NodePort
+                    '''
                 }
             }
+
         }
     }
     post{

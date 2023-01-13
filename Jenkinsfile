@@ -32,7 +32,7 @@ pipeline {
             steps{
                 script{
                     //bat 'docker push spgdlp/java-app1:latest'
-                    bat 'kubectl config view'
+                    bat 'kubectl get pods -n=jenkins'
                 }
             }
         }

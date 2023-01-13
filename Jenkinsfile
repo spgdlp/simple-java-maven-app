@@ -32,7 +32,7 @@ pipeline {
             steps{
                 script{
                     //bat 'docker push spgdlp/java-app1:latest'
-                    bat 'helm'
+                    bat 'kubectl get nodes'
                 }
             }
         }

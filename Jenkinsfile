@@ -35,8 +35,8 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy to K8S'){
-            agent {
+        /*stage ('Deploy to K8S'){
+            steps {
                 kubernetes {
                     cloud 'kubernetes'
                     yaml """
@@ -85,7 +85,7 @@ pipeline {
                 bat 'echo Hola'
             }
         }
-    }
+    }*/
     post{
         always {
             bat 'docker logout'

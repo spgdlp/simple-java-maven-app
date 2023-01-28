@@ -13,6 +13,13 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
+        stage ('SonarQube Analisis'){
+            steps{
+                withSonarQubeEnv('SonarQubePruebas'){
+                    bat 'mvn sonar:sonar'
+                }
+            }
+        }
         stage ('Build Docker Image'){
             steps{
                 script{

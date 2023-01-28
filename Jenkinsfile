@@ -84,8 +84,8 @@ pipeline {
             steps {
                 bat 'echo Hola'
             }
-        }
-    }*/
+        }*/
+    }
     post{
         always {
             bat 'docker logout'

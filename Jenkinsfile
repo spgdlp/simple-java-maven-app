@@ -10,16 +10,17 @@ pipeline {
         stage ('Build Maven Project'){
             steps{
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/spgdlp/simple-java-maven-app']]])
-                bat 'mvn clean install'
+                //bat 'mvn clean install'
+                bat 'mvn clean package sonar:sonar'
             }
         }
-        stage ('SonarQube Analisis'){
+        /*stage ('SonarQube Analisis'){
             steps{
                 withSonarQubeEnv('SonarQubePruebas'){
                     bat 'mvn sonar:sonar'
                 }
             }
-        }
+        }*/
         stage ('Build Docker Image'){
             steps{
                 script{

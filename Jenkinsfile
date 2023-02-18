@@ -29,7 +29,7 @@ pipeline {
 
             }
         }
-        stage ('Login Docker Registry'){
+        /*stage ('Login Docker Registry'){
             steps{
                 script{
                     bat 'docker login --username=%DOCKERHUB_CREDENTIALS_USR% --password=%DOCKERHUB_CREDENTIALS_PSW%'
@@ -43,7 +43,7 @@ pipeline {
                 }
             }
         }
-        /*stage ('Deploy to K8S'){
+        stage ('Deploy to K8S'){
             steps {
                 kubernetes {
                     cloud 'kubernetes'
